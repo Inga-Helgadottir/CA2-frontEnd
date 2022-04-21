@@ -52,3 +52,10 @@ now you will be asked for an email and a password
 then you will se a link that looks something like this
 
 http://exercisestest.surge.sh/ (instead of A_DOMAIN_NAME i wrote exercisestest)
+
+
+## This is a clone of the original repository
+
+https://github.com/Inga-Helgadottir/CA2-front-end
+
+we had to change from vite to npx to make deployment of the front end easier
