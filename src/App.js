@@ -1,23 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import LogIn from "./components/LogIn";
+import Footer from "./components/Footer";
+import "./styles/App.css";
+import "./styles/form.css";
+import { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
+import WelcomePage from "./components/WelcomePage";
+import LogOut from "./components/LogOut";
+import { loginUrl } from "./settings";
 
 function App() {
+  const [userName, setUserName] = useState("");
+  const [userRole, setUserRole] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const logInFunc = async (user) => {
+    const res = await fetch(loginUrl, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+
+    const data = await res.json();
+    setUserName(data.username);
+    setUserRole(data.role0);
+    if (data.username !== null && data.username !== "") {
+      setLoggedIn(true);
+    }
+  };
+
+  const logOutFunc = async () => {
+    setLoggedIn(false);
+    setUserName("");
+    setUserRole("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+
+      {loggedIn && <WelcomePage name={userName} role={userRole} />}
+
+      {loggedIn && (
+        <nav className="borderNoTop">
+          <Link to="/">Home</Link>
+          <Link to="/pokemons">Pokemons</Link>
+          <Link to="/swapi">Star wars</Link>
+        </nav>
+      )}
+      <Outlet />
+
+      {!loggedIn && <LogIn onAdd={logInFunc} />}
+
+      {loggedIn && <LogOut onClick={logOutFunc} />}
+
+      <Footer />
     </div>
   );
 }
