@@ -11,6 +11,8 @@ write in the terminal:
 
 then open http://localhost:3000/
 
+***
+
 ## In this project you can log in with the following users
 
 username: user
@@ -27,9 +29,26 @@ username: user_admin
 
 password: test123
 
-
+***
 ## When you login 
 
 you will see a welcome message with your username and role
 
 currently there is no other difference between when a user or admin loggs in
+
+***
+
+# Deploying with surge.sh
+
+npm run build
+
+npm install -g surge
+
+surge --project ./build --domain A_DOMAIN_NAME.surge.sh
+(A_DOMAIN_NAME is just so that you have a name for you site)
+
+now you will be asked for an email and a password 
+
+then you will se a link that looks something like this
+
+http://exercisestest.surge.sh/ (instead of A_DOMAIN_NAME i wrote exercisestest)
