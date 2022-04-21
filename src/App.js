@@ -15,13 +15,6 @@ function App() {
   const [userRole, setUserRole] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
 
-  //set favicon
-  var link = document.createElement("link");
-  link.type = "image/png";
-  link.rel = "icon";
-  link.href = img;
-  document.getElementsByTagName("head")[0].appendChild(link);
-
   const logInFunc = async (user) => {
     const res = await fetch(loginUrl, {
       method: "POST",
