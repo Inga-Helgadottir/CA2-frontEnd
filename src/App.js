@@ -8,7 +8,6 @@ import { Outlet, Link } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage";
 import LogOut from "./components/LogOut";
 import { loginUrl } from "./settings";
-import img from "./smiley.png";
 
 function App() {
   const [userName, setUserName] = useState("");
